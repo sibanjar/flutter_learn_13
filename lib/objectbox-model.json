@@ -1,0 +1,115 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "3:2532902531096367609",
+      "lastPropertyId": "5:6427511362963713221",
+      "name": "AddressBox",
+      "properties": [
+        {
+          "id": "1:636015469897794284",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1994572950629151646",
+          "name": "street",
+          "type": 9
+        },
+        {
+          "id": "3:531070133404012218",
+          "name": "suite",
+          "type": 9
+        },
+        {
+          "id": "4:2080701229577556031",
+          "name": "city",
+          "type": 9
+        },
+        {
+          "id": "5:6427511362963713221",
+          "name": "zipcode",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:801838418407153287",
+      "lastPropertyId": "7:3695225395696290398",
+      "name": "UserBox",
+      "properties": [
+        {
+          "id": "1:882918047273113330",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6459200758418769171",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:6954220502704522029",
+          "name": "username",
+          "type": 9
+        },
+        {
+          "id": "4:6027484825037388873",
+          "name": "email",
+          "type": 9
+        },
+        {
+          "id": "5:2217483088497470389",
+          "name": "addressId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "2:1617027140447950477",
+          "relationTarget": "AddressBox"
+        },
+        {
+          "id": "6:3324665428674090002",
+          "name": "phone",
+          "type": 9
+        },
+        {
+          "id": "7:3695225395696290398",
+          "name": "website",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "4:801838418407153287",
+  "lastIndexId": "2:1617027140447950477",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    8813098035790236823,
+    827724144120616538
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    267588440891512754,
+    1516409905442003886,
+    8994701691517113416,
+    4636232417776752315,
+    6479368086671177304,
+    428253914299706163,
+    4101105484026853190,
+    665273859906297497,
+    1446135249894493038,
+    4893736343504214163,
+    7836856833344339304,
+    8153052031023613432
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}
