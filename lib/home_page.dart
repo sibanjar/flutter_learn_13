@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn_13/animate%20slider/animatedslider.dart';
+import 'package:flutter_learn_13/screen/main_screen.dart';
 import 'package:flutter_learn_13/utility/routes/route_names.dart';
 import 'package:go_router/go_router.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -17,12 +18,21 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _controller = PersistentTabController(initialIndex: 0);
+  late bool _hideNavBar;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _hideNavBar = false;
+  }
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
+      hideNavigationBar: _hideNavBar,
       controller: _controller,
-      screens: _buildScreens(),
+      screens: _buildScreens(context),
       items: _navBarsItems(),
       confineInSafeArea: true,
       backgroundColor: Colors.white, // Default is Colors.white.
@@ -45,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
       ),
-      navBarStyle: NavBarStyle.style1, // Choose the nav bar style with this property.
+      navBarStyle: NavBarStyle.style12, // Choose the nav bar style with this property.
     );
     return Scaffold(
       appBar: AppBar(
@@ -113,10 +123,28 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  List<Widget> _buildScreens() {
+  List<Widget> _buildScreens(BuildContext context) {
     return [
       const SliderExample(),
-      LoginPage(),
+      MainScreen(
+        menuScreenContext: context,
+        hideStatus: _hideNavBar,
+        onScreenHideButtonPressed: () {
+          setState(() {
+            _hideNavBar = !_hideNavBar;
+          });
+        },
+      ),
+      MainScreen(
+        menuScreenContext: context,
+        hideStatus: _hideNavBar,
+        onScreenHideButtonPressed: () {
+          setState(() {
+            _hideNavBar = !_hideNavBar;
+          });
+        },
+
+      ),
       Container(),
       // SettingsScreen()
     ];
@@ -129,18 +157,33 @@ class _MyHomePageState extends State<MyHomePage> {
         title: ("Home"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
-        // routeAndNavigatorSettings: RouteAndNavigatorSettings(
-        //   initialRoute: "/",
-        //   routes: {
-        //     "/login": (final context) => const LoginPage(),
-        //   },
-        // ),
+
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(Icons.favorite_border),
+        title: ("Favourite"),
+        activeColorPrimary: CupertinoColors.activeBlue,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+        routeAndNavigatorSettings: RouteAndNavigatorSettings(
+          initialRoute: "/",
+          routes: {
+            RoutePathConstants.urlLauncher: (final context) => const LoginPage(),
+          },
+        ),
+          // /Navigator.of(context).popUntil(ModalRoute.withName("/"));
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.location),
         title: ("Login"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
+        routeAndNavigatorSettings: RouteAndNavigatorSettings(
+          initialRoute: "/",
+          routes: {
+            RoutePathConstants.urlLauncher: (final context) => const LoginPage(),
+          },
+        ),
+          // /Navigator.of(context).popUntil(ModalRoute.withName("/"));
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.settings),
